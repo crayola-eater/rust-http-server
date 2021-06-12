@@ -1,9 +1,4 @@
 fn main() {
-    let get = HttpMethod::GET;
-    let delete = HttpMethod::DELETE;
-    let post = HttpMethod::POST;
-    let put = HttpMethod::PUT;
-
     let mut server = server::Server::new("127.0.0.1:8080".to_string());
     server.run();
 }
