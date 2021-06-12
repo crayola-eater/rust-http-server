@@ -8,4 +8,8 @@ impl Server {
     fn new(address: String) -> Self {
         Self { address }
     }
+
+    fn run(&mut self) {
+        println!("Server is running! On: {}", self.address);
+    }
 }
