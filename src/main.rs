@@ -25,10 +25,12 @@ mod server {
 }
 
 mod http {
-    struct Request {
-        path: String,
-        query_string: Option<String>,
-        method: HttpMethod,
+    mod request {
+        pub struct Request {
+            path: String,
+            query_string: Option<String>,
+            method: HttpMethod,
+        }
     }
 
     enum HttpMethod {
