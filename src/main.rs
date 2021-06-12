@@ -24,20 +24,22 @@ mod server {
     }
 }
 
-struct Request {
-    path: String,
-    query_string: Option<String>,
-    method: HttpMethod,
-}
+mod http {
+    struct Request {
+        path: String,
+        query_string: Option<String>,
+        method: HttpMethod,
+    }
 
-enum HttpMethod {
-    GET,
-    DELETE,
-    POST,
-    PUT,
-    HEAD,
-    CONNECT,
-    OPTIONS,
-    TRACE,
-    PATCH,
+    enum HttpMethod {
+        GET,
+        DELETE,
+        POST,
+        PUT,
+        HEAD,
+        CONNECT,
+        OPTIONS,
+        TRACE,
+        PATCH,
+    }
 }
