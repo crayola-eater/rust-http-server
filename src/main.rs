@@ -4,21 +4,23 @@ fn main() {
     let post = HttpMethod::POST;
     let put = HttpMethod::PUT;
 
-    let mut server = Server::new("127.0.0.1:8080".to_string());
+    let mut server = server::Server::new("127.0.0.1:8080".to_string());
     server.run();
 }
 
-struct Server {
-    address: String,
-}
-
-impl Server {
-    fn new(address: String) -> Self {
-        Self { address }
+mod server {
+    struct Server {
+        address: String,
     }
 
-    fn run(&mut self) {
-        println!("Server running on: {}!", self.address);
+    impl Server {
+        fn new(address: String) -> Self {
+            Self { address }
+        }
+
+        fn run(&mut self) {
+            println!("Server running on: {}!", self.address);
+        }
     }
 }
 
