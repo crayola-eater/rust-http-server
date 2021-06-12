@@ -9,16 +9,16 @@ fn main() {
 }
 
 mod server {
-    struct Server {
+    pub struct Server {
         address: String,
     }
 
     impl Server {
-        fn new(address: String) -> Self {
+        pub fn new(address: String) -> Self {
             Self { address }
         }
 
-        fn run(&mut self) {
+        pub fn run(&mut self) {
             println!("Server running on: {}!", self.address);
         }
     }
