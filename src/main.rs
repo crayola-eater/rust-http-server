@@ -34,7 +34,7 @@ mod http {
     }
 
     mod method {
-        enum HttpMethod {
+        pub enum HttpMethod {
             GET,
             DELETE,
             POST,
