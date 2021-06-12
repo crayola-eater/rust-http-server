@@ -1,4 +1,7 @@
-fn main() {}
+fn main() {
+    let server = Server::new("127.0.0.1:8080");
+    server.run();
+}
 
 struct Server {
     address: String,
@@ -10,6 +13,6 @@ impl Server {
     }
 
     fn run(&mut self) {
-        println!("Server is running! On: {}", self.address);
+        println!("Server running on: {}!", self.address);
     }
 }
