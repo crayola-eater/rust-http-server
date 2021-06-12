@@ -17,6 +17,12 @@ impl Server {
     }
 }
 
+struct Request {
+    path: String,
+    query_string: String,
+    method: HttpMethod,
+}
+
 enum HttpMethod {
     GET,
     DELETE,
