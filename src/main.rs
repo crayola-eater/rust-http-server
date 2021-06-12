@@ -1,4 +1,9 @@
 fn main() {
+    let get = HttpMethod::GET;
+    let delete = HttpMethod::DELETE;
+    let post = HttpMethod::POST;
+    let put = HttpMethod::PUT;
+
     let mut server = Server::new("127.0.0.1:8080".to_string());
     server.run();
 }
@@ -19,7 +24,7 @@ impl Server {
 
 struct Request {
     path: String,
-    query_string: String,
+    query_string: Option<String>,
     method: HttpMethod,
 }
 
