@@ -1,4 +1,5 @@
-use std::{io::Read, net::TcpListener};
+use std::io::Read;
+use std::net::TcpListener;
 
 pub struct Server {
     address: String,
