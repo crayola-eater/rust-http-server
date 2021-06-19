@@ -17,7 +17,10 @@ impl Server {
 
         loop {
             match listener.accept() {
-                Ok((mut stream, address)) => {}
+                Ok((mut stream, address)) => {
+                    let mut buffer = [0; 1024];
+                    stream.read(&mut buffer);
+                }
                 Err(error) => println!("Failed to establish a connection. {}", error),
             };
         }
