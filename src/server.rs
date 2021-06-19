@@ -17,7 +17,7 @@ impl Server {
 
         loop {
             match listener.accept() {
-                Ok((stream, address)) => {}
+                Ok((mut stream, address)) => {}
                 Err(error) => println!("Failed to establish a connection. {}", error),
             };
         }
