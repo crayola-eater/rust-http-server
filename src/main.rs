@@ -33,7 +33,7 @@ mod http {
         }
     }
 
-    mod method {
+    pub mod method {
         pub enum HttpMethod {
             GET,
             DELETE,
