@@ -13,5 +13,12 @@ impl Server {
         println!("Server running on: {}!", self.address);
 
         let listener = TcpListener::bind(&self.address).expect("Failed to bind to TCP socket");
+
+        loop {
+            match listener.accept() {
+                Ok((stream, address)) => {}
+                Err(error) => println!("Failed to establish a connection. {}", error),
+            };
+        }
     }
 }
