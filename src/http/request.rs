@@ -1,5 +1,7 @@
 use super::method::HttpMethod;
 use std::convert::TryFrom;
+use std::error::Error;
+use std::fmt::{Display, Formatter, Result as FmtResult};
 
 pub struct Request {
     pub path: String,
@@ -20,4 +22,15 @@ pub enum ParseError {
     InvalidEncoding, // If non-UTF-8
     InvalidProtocol, // Only supporting 1.1 (to begin with)
     InvalidMethod,   // If HTTP verb is malformed or unsupported
+}
+
+impl ParseError {
+    fn message(&self) -> &str {
+        match self {
+            Self::InvalidRequest => "Invalid request",
+            Self::InvalidEncoding => "Invalid encoding",
+            Self::InvalidProtocol => "Invalid protocol",
+            Self::InvalidMethod => "Invalid method",
+        }
+    }
 }
