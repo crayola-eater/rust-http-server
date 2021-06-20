@@ -14,3 +14,10 @@ impl TryFrom<&[u8]> for Request {
         unimplemented!()
     }
 }
+
+pub enum ParseError {
+    InvalidRequest,  // General, non-specific
+    InvalidEncoding, // If non-UTF-8
+    InvalidProtocol, // Only supporting 1.1 (to begin with)
+    InvalidMethod,   // If HTTP verb is malformed or unsupported
+}
