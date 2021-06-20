@@ -7,12 +7,6 @@ pub struct Request {
     method: HttpMethod,
 }
 
-impl Request {
-    fn from_bytes_array(buffer: &[u8]) -> Result<Self, String> {
-        unimplemented!()
-    }
-}
-
 impl TryFrom<&[u8]> for Request {
     type Error = String;
 
