@@ -34,3 +34,9 @@ impl ParseError {
         }
     }
 }
+
+impl Display for ParseError {
+    fn fmt(&self, f: &mut Formatter) -> FmtResult {
+        write!(f, "{}", self.message())
+    }
+}
