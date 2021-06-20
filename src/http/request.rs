@@ -1,7 +1,7 @@
 use super::method::HttpMethod;
 use std::convert::TryFrom;
 use std::error::Error;
-use std::fmt::{Display, Formatter, Result as FmtResult};
+use std::fmt::{Debug, Display, Formatter, Result as FmtResult};
 
 pub struct Request {
     pub path: String,
@@ -36,6 +36,12 @@ impl ParseError {
 }
 
 impl Display for ParseError {
+    fn fmt(&self, f: &mut Formatter) -> FmtResult {
+        write!(f, "{}", self.message())
+    }
+}
+
+impl Debug for ParseError {
     fn fmt(&self, f: &mut Formatter) -> FmtResult {
         write!(f, "{}", self.message())
     }
