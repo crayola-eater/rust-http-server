@@ -2,9 +2,9 @@ use super::method::HttpMethod;
 use std::convert::TryFrom;
 
 pub struct Request {
-    path: String,
-    query_string: Option<String>,
-    method: HttpMethod,
+    pub path: String,
+    pub query_string: Option<String>,
+    pub method: HttpMethod,
 }
 
 impl TryFrom<&[u8]> for Request {
