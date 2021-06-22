@@ -1,6 +1,5 @@
 use super::method::HttpMethod;
 use std::convert::TryFrom;
-use std::error::Error;
 use std::fmt::{Debug, Display, Formatter, Result as FmtResult};
 use std::str::{self, Utf8Error};
 
@@ -14,7 +13,16 @@ impl TryFrom<&[u8]> for Request {
     type Error = ParseError;
 
     fn try_from(buffer: &[u8]) -> Result<Self, Self::Error> {
-        let request = str::from_utf8(buffer)?;
+        let raw = str::from_utf8(buffer)?;
+
+        let (method, path, protocol) = {
+            let mut iterator = raw.trim().split_whitespace().take(3);
+            (
+                iterator.next().ok_or(ParseError::InvalidMethod)?,
+                iterator.next().ok_or(ParseError::InvalidRequest)?,
+                iterator.next().ok_or(ParseError::InvalidProtocol)?,
+            )
+        };
 
         unimplemented!()
     }
