@@ -22,7 +22,10 @@ impl TryFrom<&[u8]> for Request {
                     .next()
                     .ok_or(ParseError::InvalidRequest)?
                     .parse::<HttpMethod>()?,
-                iterator.next().ok_or(ParseError::InvalidRequest)?,
+                iterator
+                    .next()
+                    .ok_or(ParseError::InvalidRequest)?
+                    .to_string(),
                 iterator.next().ok_or(ParseError::InvalidRequest)?,
             )
         };
