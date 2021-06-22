@@ -18,9 +18,12 @@ impl TryFrom<&[u8]> for Request {
         let (method, path, protocol) = {
             let mut iterator = raw.trim().split_whitespace().take(3);
             (
-                iterator.next().ok_or(ParseError::InvalidMethod)?,
+                iterator
+                    .next()
+                    .ok_or(ParseError::InvalidRequest)?
+                    .parse::<HttpMethod>()?,
                 iterator.next().ok_or(ParseError::InvalidRequest)?,
-                iterator.next().ok_or(ParseError::InvalidProtocol)?,
+                iterator.next().ok_or(ParseError::InvalidRequest)?,
             )
         };
 
