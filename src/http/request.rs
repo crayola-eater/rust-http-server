@@ -34,6 +34,12 @@ impl TryFrom<&[u8]> for Request {
             Some(index) => Some(path[index + 1..].to_string()),
             None => None,
         };
+
+        Ok(Self {
+            path,
+            query_string,
+            method,
+        })
     }
 }
 
