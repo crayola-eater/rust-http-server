@@ -28,11 +28,9 @@ impl TryFrom<&[u8]> for Request {
         };
 
         let query_string = match path.find('?') {
-            Some(index) => Some(&path[index + 1..]),
+            Some(index) => Some(path[index + 1..].to_string()),
             None => None,
         };
-
-        unimplemented!()
     }
 }
 
