@@ -1,7 +1,7 @@
 use crate::http::Request;
 use crate::http::{Response, StatusCode};
 use std::convert::TryFrom;
-use std::io::{Read, Write};
+use std::io::Read;
 use std::net::TcpListener;
 
 pub struct Server {
@@ -34,7 +34,9 @@ impl Server {
                                 Ok(request) => {
                                     println!("{:#?}", request);
                                     let response = Response::new(StatusCode::NotFound, None);
-                                    write!(stream, "{}", response);
+                                    if let Err(error) = response.send(&mut stream) {
+                                        println!("An error occurred. {}", error);
+                                    }
                                 }
                                 Err(error) => println!("Failed to parse request. {}", error),
                             }
