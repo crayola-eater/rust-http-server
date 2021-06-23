@@ -1,11 +1,12 @@
 use super::method::{HttpMethod, MethodError};
+use super::QueryString;
 use std::convert::TryFrom;
 use std::fmt::{Debug, Display, Formatter, Result as FmtResult};
 use std::str::{self, Utf8Error};
 
 pub struct Request<'buffer> {
     pub path: &'buffer str,
-    pub query_string: Option<&'buffer str>,
+    pub query_string: Option<QueryString<'buffer>>,
     pub method: HttpMethod,
 }
 
@@ -28,7 +29,7 @@ impl<'buffer> TryFrom<&'buffer [u8]> for Request<'buffer> {
         };
 
         let query_string = match path.find('?') {
-            Some(index) => Some(&path[index + 1..]),
+            Some(index) => Some(QueryString::from(&path[index + 1..])),
             None => None,
         };
 
