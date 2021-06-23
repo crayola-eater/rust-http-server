@@ -30,15 +30,18 @@ impl Server {
                                 address,
                                 String::from_utf8_lossy(&buffer)
                             );
-                            match Request::try_from(&buffer[..]) {
+                            let response = match Request::try_from(&buffer[..]) {
                                 Ok(request) => {
                                     println!("{:#?}", request);
-                                    let response = Response::new(StatusCode::NotFound, None);
-                                    if let Err(error) = response.send(&mut stream) {
-                                        println!("An error occurred. {}", error);
-                                    }
+                                    Response::new(StatusCode::NotFound, None)
                                 }
-                                Err(error) => println!("Failed to parse request. {}", error),
+                                Err(error) => {
+                                    println!("Failed to parse request. {}", error);
+                                    Response::new(StatusCode::BadRequest, None)
+                                }
+                            };
+                            if let Err(error) = response.send(&mut stream) {
+                                println!("Failed to send response. {}", error);
                             }
                         }
                         Err(error) => println!("Failed to read from connection. {}", error),
