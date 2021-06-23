@@ -3,16 +3,16 @@ use std::convert::TryFrom;
 use std::fmt::{Debug, Display, Formatter, Result as FmtResult};
 use std::str::{self, Utf8Error};
 
-pub struct Request {
-    pub path: &str,
-    pub query_string: Option<&str>,
+pub struct Request<'buffer> {
+    pub path: &'buffer str,
+    pub query_string: Option<&'buffer str>,
     pub method: HttpMethod,
 }
 
-impl TryFrom<&[u8]> for Request {
+impl<'buffer> TryFrom<&'buffer [u8]> for Request<'buffer> {
     type Error = ParseError;
 
-    fn try_from(buffer: &[u8]) -> Result<Self, Self::Error> {
+    fn try_from(buffer: &'buffer [u8]) -> Result<Self, Self::Error> {
         let raw = str::from_utf8(buffer)?;
 
         let (method, path, protocol) = {
