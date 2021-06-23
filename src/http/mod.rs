@@ -1,4 +1,5 @@
 pub use method::HttpMethod;
+pub use query_string::{QueryParameterValue, QueryString};
 pub use request::ParseError;
 pub use request::Request;
 
