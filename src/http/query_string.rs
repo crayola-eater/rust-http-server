@@ -4,6 +4,7 @@ pub struct QueryString<'buffer> {
     data: HashMap<&'buffer str, QueryParameterValue<'buffer>>,
 }
 
+#[derive(Debug)]
 pub enum QueryParameterValue<'buffer> {
     Single(&'buffer str),
     Multiple(Vec<&'buffer str>),
