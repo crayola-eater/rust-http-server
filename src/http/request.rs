@@ -4,8 +4,8 @@ use std::fmt::{Debug, Display, Formatter, Result as FmtResult};
 use std::str::{self, Utf8Error};
 
 pub struct Request {
-    pub path: String,
-    pub query_string: Option<String>,
+    pub path: &str,
+    pub query_string: Option<&str>,
     pub method: HttpMethod,
 }
 
@@ -22,16 +22,13 @@ impl TryFrom<&[u8]> for Request {
                     .next()
                     .ok_or(ParseError::InvalidRequest)?
                     .parse::<HttpMethod>()?,
-                iterator
-                    .next()
-                    .ok_or(ParseError::InvalidRequest)?
-                    .to_string(),
+                iterator.next().ok_or(ParseError::InvalidRequest)?,
                 iterator.next().ok_or(ParseError::InvalidRequest)?,
             )
         };
 
         let query_string = match path.find('?') {
-            Some(index) => Some(path[index + 1..].to_string()),
+            Some(index) => Some(&path[index + 1..]),
             None => None,
         };
 
