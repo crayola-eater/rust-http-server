@@ -4,6 +4,7 @@ use std::convert::TryFrom;
 use std::fmt::{Debug, Display, Formatter, Result as FmtResult};
 use std::str::{self, Utf8Error};
 
+#[derive(Debug)]
 pub struct Request<'buffer> {
     pub path: &'buffer str,
     pub query_string: Option<QueryString<'buffer>>,
