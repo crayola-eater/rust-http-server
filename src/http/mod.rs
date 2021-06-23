@@ -2,6 +2,7 @@ pub use method::HttpMethod;
 pub use query_string::{QueryParameterValue, QueryString};
 pub use request::ParseError;
 pub use request::Request;
+pub use response::Response;
 
 pub mod method;
 pub mod query_string;
