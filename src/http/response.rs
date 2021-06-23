@@ -8,7 +8,7 @@ pub struct Response {
 }
 
 impl Response {
-    fn new(status_code: StatusCode, body: Option<String>) -> Self {
+    pub fn new(status_code: StatusCode, body: Option<String>) -> Self {
         Self { status_code, body }
     }
 }
