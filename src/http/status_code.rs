@@ -1,5 +1,6 @@
 use std::fmt::{Display, Formatter, Result as FmtResult};
 
+#[derive(Debug, Clone, Copy)]
 pub enum StatusCode {
     Ok = 200,
     BadRequest = 400,
