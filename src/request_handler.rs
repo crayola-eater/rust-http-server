@@ -4,6 +4,6 @@ pub struct RequestHandler {}
 
 impl Handler for RequestHandler {
     fn handle_request(&mut self, request: &Request) -> Response {
-        unimplemented!()
+        Response::new(StatusCode::Ok, Some("<h1>Some HTML</h1>".to_string()))
     }
 }
