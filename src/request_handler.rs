@@ -23,7 +23,10 @@ impl Handler for RequestHandler {
             &HttpMethod::GET => match request.path() {
                 "/" => Response::new(StatusCode::Ok, self.read_file("index.html")),
                 "/status" => Response::new(StatusCode::Ok, Some("Server is running!".to_string())),
-                _ => Response::new(StatusCode::NotFound, None),
+                path => match self.read_file(path) {
+                    Some(contents) => Response::new(StatusCode::Ok, Some(contents)),
+                    None => Response::new(StatusCode::NotFound, None),
+                },
             },
             _ => Response::new(StatusCode::NotFound, None),
         }
