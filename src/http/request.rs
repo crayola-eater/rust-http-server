@@ -6,9 +6,9 @@ use std::str::{self, Utf8Error};
 
 #[derive(Debug)]
 pub struct Request<'buffer> {
-    pub path: &'buffer str,
-    pub query_string: Option<QueryString<'buffer>>,
-    pub method: HttpMethod,
+    path: &'buffer str,
+    query_string: Option<QueryString<'buffer>>,
+    method: HttpMethod,
 }
 
 impl<'buffer> TryFrom<&'buffer [u8]> for Request<'buffer> {
