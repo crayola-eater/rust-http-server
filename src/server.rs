@@ -1,8 +1,12 @@
-use crate::http::Request;
+use crate::http::{ParseError, Request};
 use crate::http::{Response, StatusCode};
 use std::convert::TryFrom;
 use std::io::Read;
 use std::net::TcpListener;
+
+pub trait Handler {
+    fn handle_request(&mut self, request: &Request) -> Response;
+}
 
 pub struct Server {
     address: String,
