@@ -12,8 +12,16 @@ impl RequestHandler {
 
     fn read_file(&self, file_path: &str) -> Option<String> {
         let path = format!("{}/{}", self.public_path, file_path);
-        let file_contents = fs::read_to_string(path);
-        file_contents.ok()
+        match fs::canonicalize(path) {
+            Ok(canonical_path) if canonical_path.starts_with(&self.public_path) => {
+                fs::read_to_string(canonical_path).ok()
+            }
+            Ok(unauthorised_path) => {
+                println!("Directory traversal detected: {:?}", unauthorised_path);
+                None
+            }
+            Err(_) => None,
+        }
     }
 }
 
