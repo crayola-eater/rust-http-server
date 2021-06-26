@@ -1,6 +1,8 @@
 use super::http::{HttpMethod, Request, Response, StatusCode};
 use super::server::Handler;
-pub struct RequestHandler;
+pub struct RequestHandler {
+    public_path: String,
+}
 
 impl Handler for RequestHandler {
     fn handle_request(&mut self, request: &Request) -> Response {
