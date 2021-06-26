@@ -15,6 +15,10 @@ impl<'buffer> Request<'buffer> {
     pub fn path(&self) -> &'buffer str {
         &self.path
     }
+
+    pub fn method(&self) -> &HttpMethod {
+        &self.method
+    }
 }
 
 impl<'buffer> TryFrom<&'buffer [u8]> for Request<'buffer> {
