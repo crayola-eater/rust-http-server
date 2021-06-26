@@ -11,6 +11,12 @@ pub struct Request<'buffer> {
     method: HttpMethod,
 }
 
+impl<'buffer> Request<'buffer> {
+    pub fn path(&self) -> &'buffer str {
+        &self.path
+    }
+}
+
 impl<'buffer> TryFrom<&'buffer [u8]> for Request<'buffer> {
     type Error = ParseError;
 
