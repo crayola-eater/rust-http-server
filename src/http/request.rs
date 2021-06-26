@@ -17,7 +17,7 @@ impl<'buffer> TryFrom<&'buffer [u8]> for Request<'buffer> {
     fn try_from(buffer: &'buffer [u8]) -> Result<Self, Self::Error> {
         let raw = str::from_utf8(buffer)?;
 
-        let (method, path, protocol) = {
+        let (method, path, _protocol) = {
             let mut iterator = raw.trim().split_whitespace().take(3);
             (
                 iterator
