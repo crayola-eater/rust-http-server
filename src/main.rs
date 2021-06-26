@@ -12,5 +12,6 @@ fn main() {
     let public_path =
         env::var("PUBLIC_PATH").expect("No PUBLIC_PATH environment variable detected");
     let mut server = Server::new("127.0.0.1:8080".to_string());
-    server.run(RequestHandler);
+    let handler = RequestHandler::new(public_path);
+    server.run(handler);
 }
